@@ -30,11 +30,8 @@
                 <div class="meme" id="hana">
                     <img src="resources/img/screencapture-file-C-Users-i7C-31-Desktop-hanatour-main-html-2023-06-21-09_17_08.png" alt="" onclick="window.open('main.html')">
                 </div>
-                <div class="meme padding">
-                    <h5>개인 프로젝트</h5>
-                    <h3>하나투어</h3>
-                    <p>하나투어 해외여행 상품만 클론코딩한 프로젝트.(항공, 숙박, 선박 등 제외)</p>
-                    <p>로그인 후 고객별 상품 구매 및 찜 등 가능하게 할 예정</p>
+                <div class="meme padding" onclick="location.href='home2'">
+                   
                 </div>
             </div>
         </div>
