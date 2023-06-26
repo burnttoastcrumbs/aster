@@ -24,5 +24,17 @@ public class CodeGroupController {
 		
 		return "codeGroupList";
 	}
+	
+	@RequestMapping("/codeGroupListForm")
+	public String codeGroupListForm(Model model) {
+		
+		List<CodeGroup> list = service.selectList();
+		
+//		왼쪽의 list는 isp에서 사용할 변수명
+		model.addAttribute("list",list);
+		
+		
+		return "codeGroupListForm";
+	}
 
 }
