@@ -14,9 +14,14 @@ public class CodeGroupController {
 	CodeGroupServiceImpl service;
 	
 	@RequestMapping("/codeGroupList")
-	public String codeGroupList(Model model) {
+	public String codeGroupList(CodeGroupVo vo, Model model) {
+		System.out.println("controller: vo.getShOption(): " + vo.getShOption());
+		System.out.println("controller: vo.getShKeyword(): " + vo.getShKeyword());
 		
-		List<CodeGroup> list = service.selectList();
+		
+		List<CodeGroup> list = service.selectList(vo);
+		
+		System.out.println("list.size(): " + list.size());
 		
 //		왼쪽의 list는 isp에서 사용할 변수명
 		model.addAttribute("list",list);
@@ -25,16 +30,18 @@ public class CodeGroupController {
 		return "codeGroupList";
 	}
 	
-	@RequestMapping("/codeGroupListForm")
-	public String codeGroupListForm(Model model) {
+	@RequestMapping("/codeGroupForm")
+	public String codeGroupForm(CodeGroupVo vo, Model model) {
 		
-		List<CodeGroup> list = service.selectList();
+		CodeGroup codeGroup = service.selectOne(vo);
 		
 //		왼쪽의 list는 isp에서 사용할 변수명
-		model.addAttribute("list",list);
+		model.addAttribute("list",codeGroup);
+
 		
 		
 		return "codeGroupListForm";
+	
 	}
 
 }
