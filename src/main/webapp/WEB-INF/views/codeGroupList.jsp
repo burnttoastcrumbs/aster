@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <!-- <form name="formList"> -->
-<form name="formList" method="post">
+<form name="formList" method="post" autocomplete="off">
 	<select name="shOption">
 	    <option value="">--선택하세요--</option>
 	    <option value="1">Dog</option>
@@ -41,6 +41,8 @@ $("#btn").on("click", function(){
 	
 // 	$("form[name=formList]").attr("method","get");
 	$("form[name=formList]").attr("action", "/codeGroupList").submit();
+	
+	
 	
 });
 </script>

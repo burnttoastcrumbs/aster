@@ -13,6 +13,8 @@
     <resultMap id="resultMapObj" type="com.mycompany.app.codegroup.CodeGroup"></resultMap>
     
         
+        
+        
 	<select id="selectList" resultMap="resultMapObj">
     	SELECT *
     	FROM
@@ -21,12 +23,48 @@
     		name like concat('%', #{shKeyword}, '%')
     </select>
     
+    
+    
+    
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT *
     	FROM
     	 	codegroup
     	WHERE
-    		name = #{name}
+    		seq = #{seq}
     </select>
+    
+    
+    
+    <update id="update">
+    	UPDATE codegroup
+    	SET
+    		name = #{name}
+    	WHERE
+    		seq = #{seq}
+    </update>
+    
+    
+    
+    <delete id="delete">
+    	DELETE FROM
+    	 codegroup
+    	 WHERE
+    	 seq = #{seq}
+    	
+    </delete>
+    
+    
+    <insert id="insert">
+    	INSERT INTO
+    		codegroup
+    		(name)
+    	
+    	  VALUES
+    	  (#{name})
+    	  
+    </insert> 
+
+
 
 </mapper>

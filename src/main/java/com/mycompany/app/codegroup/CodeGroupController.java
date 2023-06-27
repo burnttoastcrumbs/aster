@@ -33,14 +33,55 @@ public class CodeGroupController {
 	@RequestMapping("/codeGroupForm")
 	public String codeGroupForm(CodeGroupVo vo, Model model) {
 		
-		CodeGroup codeGroup = service.selectOne(vo);
+		CodeGroup item = service.selectOne(vo);
 		
 //		왼쪽의 list는 isp에서 사용할 변수명
-		model.addAttribute("list",codeGroup);
+		model.addAttribute("item",item);
 
 		
 		
 		return "codeGroupListForm";
+	
+	}
+	
+	
+	@RequestMapping("/codeGroupUpdt")
+	public String codeGroupUpdt(CodeGroup dto) {
+		
+		System.out.println("codeGroupUpdt");
+		service.update(dto);
+		
+		return "redirect:/codeGroupList";
+	
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/codeGroupDelt")
+	
+	public String codeGroupDelt(CodeGroup dto) {
+		
+		System.out.println("codeGroupDelt");
+		service.delete(dto);
+		
+		
+		return "redirect:/codeGroupList";
+	
+	}
+	
+	
+	
+@RequestMapping("/codeGroupInsert")
+	
+	public String codeGroupInsert(CodeGroup dto) {
+		
+		System.out.println("codeGroupInsert");
+		service.insert(dto);
+		
+		
+		return "redirect:/codeGroupList";
 	
 	}
 
