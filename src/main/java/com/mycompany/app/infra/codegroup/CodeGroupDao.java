@@ -1,4 +1,4 @@
-package com.mycompany.app.codegroup;
+package com.mycompany.app.infra.codegroup;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CodeGroupDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.mycompany.app.codegroup.CodeGroupMapper";
+	private static String namespace = "com.mycompany.app.infra.codegroup.CodeGroupMapper";
 	
 	
 	
@@ -54,6 +54,8 @@ public class CodeGroupDao {
 
 
 	public int insert(CodeGroup dto) {return sqlSession.insert(namespace + ".insert", dto);}
+	
+	public int uelete(CodeGroup dto) {return sqlSession.update(namespace + ".uelete", dto);}
 	
 	
 	}

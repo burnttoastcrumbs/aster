@@ -13,7 +13,7 @@
 	
 	<input type="text" name="shKeyword">
 	
-	<button type="button" class="btn btn-primary" id="btn">Search</button>
+	<button type="button" class="btn btn-primary" id="btnSearch">Search</button>
 </form>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
@@ -37,7 +37,7 @@
 </c:choose>
 <script type="text/javascript">
 	
-$("#btn").on("click", function(){
+$("#btnSearch").on("click", function(){
 	
 // 	$("form[name=formList]").attr("method","get");
 	$("form[name=formList]").attr("action", "/codeGroupList").submit();

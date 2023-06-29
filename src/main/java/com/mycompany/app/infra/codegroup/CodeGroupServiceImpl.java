@@ -1,11 +1,11 @@
-package com.mycompany.app.codegroup;
+package com.mycompany.app.infra.codegroup;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-@Service
-public class CodeGroupServiceImpl implements CodeGroupService  {  
+	@Service
+	public class CodeGroupServiceImpl implements CodeGroupService  {  
 	
 	@Autowired
 	CodeGroupDao dao;
@@ -36,4 +36,7 @@ public class CodeGroupServiceImpl implements CodeGroupService  {
 	public int insert(CodeGroup dto) {
 		return dao.insert(dto);
 	}
+
+	@Override
+	public int uelete(CodeGroup dto) {return dao.uelete(dto); }
 }
