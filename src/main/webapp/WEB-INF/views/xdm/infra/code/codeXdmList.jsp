@@ -5,64 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
-
-<%-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-
-<form name="form" method="post">
-	<input type="text"  name="seq" id="seq"   readonly value="<c:out value="${item.seq}"/>">
-	<input type="text"  name="name" id="name"   value="<c:out value="${item.name}"/>">
-	<input type="text" class="form-control" id="delNy" name="delNy"  value="<c:out value="${item.delNy}"/>">
-	<button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
-	<button type="button" class="btn btn-primary" id="btnInsert">인서트</button>
-	<button type="button" class="btn btn-primary" id="btn">수정</button>
-	<button type="button" class="btn btn-primary" id="btnUelete">율리트?</button>
-</form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-
-<script type="text/javascript">
-	$("#btn").on("click", function(){
-		alert("수정");
-		$("form[name=form]").attr("action", "/codeGroupUpdt").submit();
-	});
-	
-	
-	
-	
-	$("#btnDelete").on("click", function(){
-		alert("삭제");
-		$("form[name=form]").attr("action", "/codeGroupDelt").submit();
-	});
-	
-	
-	
-	$("#btnInsert").on("click", function(){
-		alert("인서트");
-		$("form[name=form]").attr("action", "/codeGroupInsert").submit();
-	});
-	
-	
-	$("#btnUelete").on("click", function(){
-		alert("율리트");
-		$("form[name=form]").attr("action", "/codeGroupUelete").submit();
-	});
-	
-</script> --%>
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,7 +64,6 @@
 
 	<!-- ======= Sidebar ======= -->
 	<%@include file = "../include/includeXdmListAside.jsp"%>
-	<!-- End Sidebar-->
 
 	<main id="main" class="main">
 
@@ -144,16 +85,63 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form name="form" method="post">
-								<input type="text"  name="seq" id="seq"   readonly value="<c:out value="${item.seq}"/>">
-								<input type="text"  name="name" id="name"   value="<c:out value="${item.name}"/>">
-								<input type="text" class="form-control" id="delNy" name="delNy"  value="<c:out value="${item.delNy}"/>">
-								<button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
-								<!-- <button type="button" class="btn btn-primary" id="btnInsert">인서트</button> -->
-								<button type="button" class="btn btn-primary" id="btn">수정</button>
-								<button type="button" class="btn btn-primary" id="btnUelete">율리트</button>
-								<button type="button" class="btn btn-primary" onclick="location.href='codeGroupXdmList.html'">홈</button>
+							<h5 class="card-title">Datatables</h5>
+							<p>
+								Add lightweight datatables to your project with using the <a
+									href="https://github.com/fiduswriter/Simple-DataTables"
+									target="_blank">Simple DataTables</a> library. Just add
+								<code>.datatable</code>
+								class name to any table you wish to conver to a datatable
+							</p>
+
+							<!-- Table with stripped rows -->
+							<form name="formList" method="post" autocomplete="off">
+							<table class="table datatable">
+								<thead>
+									<tr>
+										<th scope="col">seq</th>
+										<th scope="col">name</th>
+										<th scope="col">delNy</th>
+									</tr>
+								</thead>
+			
+									
+										<select name="shOption">
+											<option value="">--선택하세요--</option>
+											<option value="1">Dog</option>
+											<option value="2">Cat</option>
+										</select> <input type="text" name="shKeyword" value="<c:out value="${vo.shKeyword }"/>">
+
+										<button type="button" class="btn btn-primary" id="btnSearch">Search</button>
+										<button type="button" class="btn btn-primary" id="btnInsert" onclick="location.href='/codeListFormInsert'">Insert</button>
+									
+									<tbody>
+									<c:choose>
+										<c:when test="${fn:length(list) eq 0}">
+											<tr>
+												<td class="text-center" colspan="9">There is no data!</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<!-- $(list) 자바에서 넘겨준 객체 이름 -->
+											<!-- var="list" jst1블럭에서 사용할 변수 이름 -->
+										
+											<c:forEach items="${list}" var="list" varStatus="status">
+												 <tr>
+													 <td><c:out value="${list.seq }"></c:out></td>
+													 <td><a href="/codeListForm?seq=<c:out value="${list.seq}"/>"><c:out value="${list.name}"></c:out></a></td>
+												<td><c:out value="${list.delNy }"></c:out></td>
+												
+												</tr>
+											
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
+							
+							</table>
 							</form>
+							<!-- End Table with stripped rows -->
 
 						</div>
 					</div>
@@ -166,19 +154,7 @@
 	<!-- End #main -->
 
 	<!-- ======= Footer ======= -->
-	<footer id="footer" class="footer">
-		<div class="copyright">
-			&copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights
-			Reserved
-		</div>
-		<div class="credits">
-			<!-- All the links in the footer should remain intact. -->
-			<!-- You can delete the links only if you purchased the pro version. -->
-			<!-- Licensing information: https://bootstrapmade.com/license/ -->
-			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-		</div>
-	</footer>
+	<%@include file = "../include/includeXdmListFooter.jsp"%>
 	<!-- End Footer -->
 
 	<a href="#"
@@ -201,62 +177,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("#btnSearch").on("click",	function() {
+/* 			alert("dfdfdfdf근데 안됨@"); */
+					// 	$("form[name=formList]").attr("method","get");
+			$("form[name=formList]").attr("action", "/codeXdmList").submit();
 
-<script type="text/javascript">
-	$("#btn").on("click", function(){
-		/* alert("수정"); */
-		$("form[name=form]").attr("action", "/codeGroupUpdt").submit();
-	});
-	
-	
-	
-	
-	$("#btnDelete").on("click", function(){
-		/* alert("삭제"); */
-		$("form[name=form]").attr("action", "/codeGroupDelt").submit();
-	});
-	
-	
-	
-/* 	$("#btnInsert").on("click", function(){
-		/* alert("인서트"); 
-		$("form[name=form]").attr("action", "/codeGroupInsert").submit();
-	});
-	 */
-	
-	$("#btnUelete").on("click", function(){
-	/* 	alert("율리트"); */
-		$("form[name=form]").attr("action", "/codeGroupUelete").submit();
-	});
-	
-</script>
+				});
+		
+		$("#btnInsert").on("click",	function() {
+			/* alert("인서트 확인"); */
+					// 	$("form[name=formList]").attr("method","get");
+		/* 	$("form[name=formList]").attr("action", "/codeGroupXdmList").submit(); */
+
+				});
+	</script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <> -->
-
-
-
-
-
-
-
-
-
-

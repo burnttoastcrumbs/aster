@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,17 +15,19 @@ public class CodeGroupController {
 	CodeGroupServiceImpl service;
 
 	@RequestMapping("/codeGroupXdmList")
-	public String codeGroupXdmList(CodeGroupVo vo, Model model) {
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
 		System.out.println("controller: vo.getShOption(): " + vo.getShOption());
 		System.out.println("controller: vo.getShKeyword(): " + vo.getShKeyword());
 
+		vo.setShKeyword(vo.getShKeyword() ==null? "번":vo.getShKeyword());
 		List<CodeGroup> list = service.selectList(vo);
 
 		System.out.println("list.size(): " + list.size());
 
 //		왼쪽의 list는 isp에서 사용할 변수명
 		model.addAttribute("list", list);
-
+		/* model.addAttribute("vo", vo); */
+		/* 상단의 @ModelAttribute("vo")와 똑같음 */
 		return "/xdm/infra/codegroup/codeGroupXdmList";
 	}
 
@@ -39,6 +42,32 @@ public class CodeGroupController {
 		return "/xdm/infra/codegroup/codeGroupListForm";
 
 	}
+	
+	
+	@RequestMapping("/codeGroupListFormInsert")
+	public String codeGroupListFormInsert(CodeGroupVo vo, Model model) {
+
+		CodeGroup item = service.selectOne(vo);
+
+//		왼쪽의 list는 isp에서 사용할 변수명
+		model.addAttribute("item", item);
+
+		return "/xdm/infra/codegroup/codeGroupListFormInsert";
+
+	}
+	
+	@RequestMapping("/test")
+	public String test(CodeGroupVo vo, Model model) {
+
+		CodeGroup item = service.selectOne(vo);
+
+//		왼쪽의 list는 isp에서 사용할 변수명
+		model.addAttribute("item", item);
+
+		return "/xdm/infra/codegroup/test";
+
+	}
+	
 
 	@RequestMapping("/codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroup dto) {
@@ -49,6 +78,7 @@ public class CodeGroupController {
 		return "redirect:/codeGroupXdmList";
 
 	}
+	
 
 	@RequestMapping("/codeGroupDelt")
 
@@ -82,5 +112,15 @@ public class CodeGroupController {
 		return "redirect:/codeGroupXdmList";
 
 	}
+	
+	/*---------------------------------------------------------------------------------------------------------------------- */
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

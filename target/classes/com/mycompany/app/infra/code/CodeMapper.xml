@@ -7,17 +7,18 @@
 	namespace와 일치하여야 된다. -->
 
 <mapper
-	namespace="com.mycompany.app.infra.codegroup.CodeGroupMapper">
+	namespace="com.mycompany.app.infra.code.CodeMapper">
 
 	<!-- select 결과를 받을 객체 -->
 	<resultMap id="resultMapObj"
-		type="com.mycompany.app.infra.codegroup.CodeGroup"></resultMap>
+		type="com.mycompany.app.infra.code.Code"></resultMap>
 
 
 
 	<sql id="abc">
 		seq,
 		name,
+		codegroup_seq,
 		delNy
 	</sql>
 
@@ -25,7 +26,7 @@
 		SELECT
 			<include refid="abc" />
 		FROM
-			codegroup
+			code
 		WHERE 1 = 1
 			<if test="shKeyword != null and !shKeyword.equals('')">AND name LIKE CONCAT('%',#{shKeyword},'%')</if>
 	</select>
@@ -35,7 +36,7 @@
 		SELECT
 		<include refid="abc" />
 		FROM
-			codegroup
+			code
 		WHERE 1=1 and
 			seq = #{seq}
 	</select>
@@ -44,7 +45,7 @@
 
 	<update id="update">
 		UPDATE 
-			codegroup
+			code
 		SET
 			name = #{name}
 		WHERE
@@ -55,7 +56,7 @@
 
 	<delete id="delete">
 		DELETE FROM
-			codegroup
+			code
 		WHERE
 			seq = #{seq}
 
@@ -63,12 +64,14 @@
 
 
 	<insert id="insert">
-		INSERT INTO codegroup (
+		INSERT INTO code (
 			name,
-			delNy
+			delNy,
+			codegroup_seq
 		) VALUES (
 			#{name}
 			,0
+			,#{codegroup_seq}
 		)
 
 	</insert>
@@ -76,7 +79,7 @@
 
 	<update id="uelete">
 		UPDATE
-			codegroup
+			code
 		SET
 			delNy="1"
 		WHERE

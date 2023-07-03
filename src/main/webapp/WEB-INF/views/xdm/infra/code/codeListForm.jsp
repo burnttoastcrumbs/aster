@@ -152,7 +152,7 @@
 								<!-- <button type="button" class="btn btn-primary" id="btnInsert">인서트</button> -->
 								<button type="button" class="btn btn-primary" id="btn">수정</button>
 								<button type="button" class="btn btn-primary" id="btnUelete">율리트</button>
-								<button type="button" class="btn btn-primary" onclick="location.href='codeGroupXdmList.html'">홈</button>
+								<button type="button" class="btn btn-primary" onclick="location.href='codeXdmList.html'">홈</button>
 							</form>
 
 						</div>
@@ -206,7 +206,7 @@
 <script type="text/javascript">
 	$("#btn").on("click", function(){
 		/* alert("수정"); */
-		$("form[name=form]").attr("action", "/codeGroupUpdt").submit();
+		$("form[name=form]").attr("action", "/codeUpdt").submit();
 	});
 	
 	
@@ -214,7 +214,7 @@
 	
 	$("#btnDelete").on("click", function(){
 		/* alert("삭제"); */
-		$("form[name=form]").attr("action", "/codeGroupDelt").submit();
+		$("form[name=form]").attr("action", "/codeDelt").submit();
 	});
 	
 	
@@ -227,7 +227,7 @@
 	
 	$("#btnUelete").on("click", function(){
 	/* 	alert("율리트"); */
-		$("form[name=form]").attr("action", "/codeGroupUelete").submit();
+		$("form[name=form]").attr("action", "/codeUelete").submit();
 	});
 	
 </script>
