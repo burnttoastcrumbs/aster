@@ -14,23 +14,64 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 
+//	@RequestMapping("/codeGroupXdmList")
+//	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+//		System.out.println("controller: vo.getShOption(): " + vo.getShOption());
+//		System.out.println("controller: vo.getShKeyword(): " + vo.getShKeyword());
+//
+//		vo.setShKeyword(vo.getShKeyword() ==null? "번":vo.getShKeyword());
+//		List<CodeGroup> list = service.selectList(vo);
+//
+//		System.out.println("list.size(): " + list.size());
+//
+////		왼쪽의 list는 isp에서 사용할 변수명
+//		model.addAttribute("list", list);
+//		/* model.addAttribute("vo", vo); */
+//		/* 상단의 @ModelAttribute("vo")와 똑같음 */
+//		return "/xdm/infra/codegroup/codeGroupXdmList";
+//	}
+
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/codeGroupXdmList")
-	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
-		System.out.println("controller: vo.getShOption(): " + vo.getShOption());
-		System.out.println("controller: vo.getShKeyword(): " + vo.getShKeyword());
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+		
+		vo.setShKeyword(vo.getShKeyword() == null ? "" : vo.getShKeyword());
+	
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			List<CodeGroup> list = service.selectList(vo);
+			model.addAttribute("list", list);
+//			model.addAttribute("vo", vo);
+		} else {
+//			by pass
+		}
+		
+		return "xdm/infra/codegroup/codeGroupXdmList";
+		}
+	
+	
+	
+	
+	
 
-		vo.setShKeyword(vo.getShKeyword() ==null? "번":vo.getShKeyword());
-		List<CodeGroup> list = service.selectList(vo);
-
-		System.out.println("list.size(): " + list.size());
-
-//		왼쪽의 list는 isp에서 사용할 변수명
-		model.addAttribute("list", list);
-		/* model.addAttribute("vo", vo); */
-		/* 상단의 @ModelAttribute("vo")와 똑같음 */
-		return "/xdm/infra/codegroup/codeGroupXdmList";
-	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/codeGroupListForm")
 	public String codeGroupListForm(CodeGroupVo vo, Model model) {
 

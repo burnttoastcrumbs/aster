@@ -96,7 +96,9 @@
 
 							<!-- Table with stripped rows -->
 							<form name="formList" method="post" autocomplete="off">
-							<table class="table datatable">
+							<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+							<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+							<table class="table">
 								<thead>
 									<tr>
 										<th scope="col">seq</th>
@@ -140,9 +142,36 @@
 								</tbody>
 							
 							</table>
+							
 							</form>
 							<!-- End Table with stripped rows -->
-
+<div class="container-fluid px-0 mt-2">
+    <div class="row">
+        <div class="col">
+            <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
+            <ul class="pagination justify-content-center mb-0">
+                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+<c:if test="${vo.startPage gt vo.pageNumToShow}">
+                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>
+</c:if>
+<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+	<c:choose>
+		<c:when test="${i.index eq vo.thisPage}">
+                <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+		</c:when>
+		<c:otherwise>             
+                <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>                
+<c:if test="${vo.endPage ne vo.totalPages}">                
+                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a></li>
+</c:if>
+                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+            </ul>
+        </div>
+    </div>
+</div>
 						</div>
 					</div>
 
@@ -184,13 +213,12 @@
 			$("form[name=formList]").attr("action", "/codeGroupXdmList").submit();
 
 				});
+	
 		
-		$("#btnInsert").on("click",	function() {
-			/* alert("인서트 확인"); */
-					// 	$("form[name=formList]").attr("method","get");
-		/* 	$("form[name=formList]").attr("action", "/codeGroupXdmList").submit(); */
-
-				});
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			$("form[name=formList]").attr("action", "codeGroupXdmList").submit();
+		}
 	</script>
 </body>
 

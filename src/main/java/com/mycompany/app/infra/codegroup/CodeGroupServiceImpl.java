@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 		
 	}
 	
+	
+	
 	@Override
 	public CodeGroup selectOne(CodeGroupVo vo) { 
 		return dao.selectOne(vo);
@@ -39,4 +41,10 @@ import org.springframework.stereotype.Service;
 
 	@Override
 	public int uelete(CodeGroup dto) {return dao.uelete(dto); }
+
+	@Override
+	public int selectOneCount(CodeGroupVo vo) {
+		// TODO Auto-generated method stub
+		return dao.selectOneCount(vo);
+	}
 }

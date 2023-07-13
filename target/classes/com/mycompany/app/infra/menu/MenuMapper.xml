@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 전체 매처중에서 유일한 값을 사용하여야 한다. 해서 관계적으로 해당 파일의 패스와 파일이름(확장자제외) 그리고 dao에서 
+	namespace와 일치하여야 된다. -->
+
+<mapper
+	namespace="com.mycompany.app.infra.menu.MenuMapper">
+
+	<!-- select 결과를 받을 객체 -->
+	<resultMap id="resultMapObj"
+		type="com.mycompany.app.infra.menu.Menu"></resultMap>
+
+
+
+	<sql id="abc">
+		menuSeq,
+		setMenu,
+		mealMenu,
+		sideMenu,
+		drinkMenu,
+		card,
+		cash,
+		menuNames,
+		menuGroup_menuGroupSeq
+	</sql>
+
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			<include refid="abc" />
+		FROM
+			menu
+		WHERE 1 = 1
+			<if test="shKeyword != null and !shKeyword.equals('')">AND name LIKE CONCAT('%',#{shKeyword},'%')</if>
+	</select>
+	<select id="selectOne" resultMap="resultMapObj">
+
+
+		SELECT
+		<include refid="abc" />
+		FROM
+			menu
+		WHERE 1=1 and
+			Seq = #{Seq}
+	</select>
+
+
+
+	<update id="update">
+		UPDATE 
+			menu
+		SET
+			menuNames = #{menuNames}
+		WHERE
+			Seq = #{Seq}
+	</update>
+
+
+
+	<delete id="delete">
+		DELETE FROM
+			menu
+		WHERE
+			Seq = #{Seq}
+
+	</delete>
+
+
+	<insert id="insert">
+		INSERT INTO code (
+			setMenu,
+			mealMenu,
+			sideMenu,
+			drinkMenu,
+			card,
+			cash,
+			menuNames,
+			menuGroup_menuGroupSeq
+		) VALUES (
+			#{setMenu},
+			#{mealMenu},
+			#{sideMenu},
+			#{drinkMenu},
+			#{card},
+			#{cash},
+			#{menuNames},
+			#{menuGroup_menuGroupSeq}
+		)
+
+	</insert>
+
+
+	<!-- <update id="uelete">
+		UPDATE
+			menu
+		SET
+			delNy="1"
+		WHERE
+			seq = #{seq}
+	</update> -->
+
+
+</mapper>

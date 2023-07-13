@@ -28,7 +28,19 @@ public class IndexController {
 		return "xdm/infra/index/indexXdmView";
 	}
 	
+	/* -----------------------------------------------------하나투어 유저 화면-------------------------------------------------------------------- */
 	
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "usr/infra/index/main";
+	}
+	
+	
+	@RequestMapping("/signUp")
+	public String signUp() {
+		return "usr/infra/member/signUp";
+	}
 	
 	
 	

@@ -24,8 +24,8 @@ public class CodeGroupDao {
 	
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){
-		List<CodeGroup> rt= sqlSession.selectList(namespace + ".selectList", vo); 
-		return rt;
+		List<CodeGroup> codegroup= sqlSession.selectList(namespace + ".selectList", vo); 
+		return codegroup;
 //		return sqlSession.selectList(namespace + ".selectList", vo); 
 		}
 	
@@ -57,5 +57,5 @@ public class CodeGroupDao {
 	
 	public int uelete(CodeGroup dto) {return sqlSession.update(namespace + ".uelete", dto);}
 	
-	
+	public int selectOneCount(CodeGroupVo vo){ return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	}

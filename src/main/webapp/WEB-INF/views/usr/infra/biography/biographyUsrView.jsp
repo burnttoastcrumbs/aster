@@ -33,7 +33,7 @@
             </div>
             <div id="portfolio">
                 <div class="meme" id="hana">
-                    <img src="/resources/img/screencapture-file-C-Users-i7C-31-Desktop-hanatour-main-html-2023-06-21-09_17_08.png" alt="" onclick="window.open('main.html')">
+                    <img src="/resources/img/screencapture-file-C-Users-i7C-31-Desktop-hanatour-main-html-2023-06-21-09_17_08.png" alt="" onclick="window.open('main')">
                 </div>
                 <div class="meme padding" onclick="location.href='/loginXdmForm'">
                 </div>

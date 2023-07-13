@@ -14,6 +14,8 @@
 	<input type="text" name="shKeyword">
 	
 	<button type="button" class="btn btn-primary" id="btnSearch">Search</button>
+	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 </form>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
@@ -35,6 +37,7 @@
 		</c:forEach>
 	</c:otherwise>
 </c:choose>
+
 <script type="text/javascript">
 	
 $("#btnSearch").on("click", function(){

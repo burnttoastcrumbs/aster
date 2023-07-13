@@ -185,12 +185,7 @@
 
 				});
 		
-		$("#btnInsert").on("click",	function() {
-			/* alert("인서트 확인"); */
-					// 	$("form[name=formList]").attr("method","get");
-		/* 	$("form[name=formList]").attr("action", "/codeGroupXdmList").submit(); */
-
-				});
+	
 	</script>
 </body>
 
