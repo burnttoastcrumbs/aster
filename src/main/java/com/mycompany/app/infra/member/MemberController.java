@@ -8,6 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author i7C-31
+ *
+ */
+/**
+ * @author i7C-31
+ *
+ */
+/**
+ * @author i7C-31
+ *
+ */
 @Controller
 public class MemberController {
 
@@ -32,7 +44,7 @@ public class MemberController {
 	}
 
 	
-	
+		
 	   @RequestMapping("/memberListForm") public String memberListForm(MemberVo vo,
 	   Model model) {
 	   
@@ -94,7 +106,7 @@ public class MemberController {
 		System.out.println("memberInsert");
 		service.insert(dto);
 
-		return "redirect:/memberXdmList";
+		return "redirect:/main";
 
 	}
 

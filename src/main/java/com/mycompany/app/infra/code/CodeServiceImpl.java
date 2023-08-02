@@ -1,6 +1,9 @@
 package com.mycompany.app.infra.code;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,4 +42,22 @@ import org.springframework.stereotype.Service;
 
 	@Override
 	public int uelete(Code dto) {return dao.uelete(dto); }
+	
+	
+	
+//	for cache
+	@PostConstruct
+	public void selectListCachedCodeArrayList() throws Exception {
+		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+		Code.cachedCodeArrayList.clear();
+		Code.cachedCodeArrayList.addAll(codeListFromDb);
+		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
+	}
+	
+	public static void clear() throws Exception {
+		Code.cachedCodeArrayList.clear();
+	}
+	
+	
+	
 }

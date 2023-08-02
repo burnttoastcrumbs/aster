@@ -1,5 +1,8 @@
 package com.mycompany.app.infra.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 
 	// DTO 작성법 
@@ -10,6 +13,8 @@ public class Code {
 	private String name;
 	private String codegroup_seq;
 	private Integer delNy;
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 //	----- 우클릭 source / generate getter, setter
 	public String getSeq() {
@@ -36,6 +41,16 @@ public class Code {
 	public void setCodegroup_seq(String codegroup_seq) {
 		this.codegroup_seq = codegroup_seq;
 	}
+	public static List<Code> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<Code> cachedCodeArrayList) {
+		Code.cachedCodeArrayList = cachedCodeArrayList;
+	}
+	
+
+	
+	
 
 
 	

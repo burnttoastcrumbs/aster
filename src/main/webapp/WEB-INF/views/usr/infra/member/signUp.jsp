@@ -80,7 +80,7 @@
               비밀번호를 확인해주세요.
             </div>
           </div>
-          <button class="btn btn-primary" type="submit" id="bookmark">다음<i class="fa-sharp fa-solid fa-donut"></i></button>
+          <button class="btn btn-primary" type="button" id="bookmark" >다음<i class="fa-sharp fa-solid fa-donut"></i></button>
       </form>
   </section>
     
@@ -110,8 +110,8 @@
         
         $("#bookmark").on("click", function(){
 		/* alert("인서트"); */
-		$("form[name=signUp]").attr("action", "/memberInsert").submit();
-	});
+			$("form[name=signUp]").attr("action", "/memberInsert").submit();
+		});
   </script>
 </body>
 </html>
